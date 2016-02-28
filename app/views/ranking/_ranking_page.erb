@@ -1,0 +1,33 @@
+<% if @type == "have" %>
+  <% @page_title = "持っているものランキング上位10個" %>
+<% else %>
+  <% @page_title = "欲しいものランキング上位10個" %>
+<% end %>
+  
+<% content_for :title do %>
+  <%= @page_title %> - Monolist
+<% end %>
+
+<% content_for :description do %>
+  <%= @page_title %>を表示しています。
+<% end %>
+
+<% content_for :keywords do %>
+  Monolist,<%= @page_title %>
+<% end %>
+
+<h1><%= @page_title %></h1>
+<ol>    
+  <% @items.each_with_index do |item,i| %>
+    <li>
+      <div class="row">
+        <div class="col-md-2 col-md-offset-1">
+          <%= image_tag(item.medium_image , alt: item.title) %>
+        </div>
+        <div class="col-md-9">
+          <%= item.title %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ol>
