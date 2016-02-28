@@ -38,11 +38,12 @@ class User < ActiveRecord::Base
   # itemをhaveする。
   def have(item)
     item.save!
+    haves.create(user_id: self.id, item_id: item.id)
   end
   
   # itemのhaveを解除する。
   def unhave(item)
-    have = haves.find_by(id: item.id)
+    have = haves.find_by(id: item.id, item_id: item.id)
     have.destroy if have
   end
   
@@ -54,6 +55,7 @@ class User < ActiveRecord::Base
   # itemをwantする。
   def want(item)
     item.save!
+    wants.create(user_id: self.id, item_id: item.id)
   end
 
   # itemをwantしている場合true、wantしていない場合falseを返す。

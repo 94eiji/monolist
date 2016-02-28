@@ -4,7 +4,9 @@
   <% if content_for?(:head) %>
     <%= yield :head %>
   <% else %>
-    <title>Monolist</title>
+    <title><%= content_for?(:title) ? yield(:title) : "Monolist"%></title>
+    <meta name="description" content="<%= content_for(:description) ? yield(:description) : "" %>">
+    <meta name="keywords" content="<%= content_for(:keywords) ? yield(:keywords) : "" %>">
   <% end %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
