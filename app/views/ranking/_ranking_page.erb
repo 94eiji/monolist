@@ -22,7 +22,11 @@
     <li>
       <div class="row">
         <div class="col-md-2 col-md-offset-1">
-          <%= image_tag(item.medium_image , alt: item.title) %>
+          <% if item.medium_image.present? %>
+            <%= image_tag(item.medium_image , alt: item.title) %>
+          <% else %>
+            <%= image_tag('no-image.png', alt: item.title) %>
+          <% end %>
         </div>
         <div class="col-md-9">
           <%= item.title %>
